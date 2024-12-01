@@ -152,7 +152,7 @@ public class App
 					else Main.isCmrFile=false;
 					if (radioBtns[3].isSelected()) Main.isForAll=true;
 					else Main.isForAll=false;
-					
+										
 					String healthText = healthField.getText();
 					if (healthText.equals("")) Main.health=-1; //default value
 					else Main.health = Integer.parseInt(healthText);

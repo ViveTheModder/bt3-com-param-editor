@@ -15,7 +15,7 @@ public class Main
 	public static int health, transformType;
 	private static final short[] BYTE_SET_1 = {0,0x280a,0x2803,0x1e32,0x1414,0x1428};
 	private static final short[] BYTE_SET_2 = {0,0x280f,0x3c03,0x283c,0x1e1e,0x1e32};
-	public static boolean isValidCharaCostume(File src) throws IOException
+	public static boolean isInvalidCharaCostume(File src) throws IOException
 	{
 		boolean error=false;
 		RandomAccessFile raf = new RandomAccessFile(src,"r");
@@ -52,6 +52,7 @@ public class Main
 					if (byteSet!=temp)
 					{		
 						raf.close();
+						System.out.println("early exit");
 						return;
 					}
 					raf.seek(pos);
@@ -110,10 +111,10 @@ public class Main
 				String currPath = src.getCanonicalPath();
 				if (!isCmrFile)
 				{
-					if (fileName.endsWith("p.pak") || fileName.endsWith(".unk"))
+					if (fileName.endsWith("p.pak") || fileName.endsWith("dmg.pak") || fileName.endsWith(".unk"))
 					{
 						App.fileLabel.setText(App.HTML_TEXT+currPath);
-						if (Main.isValidCharaCostume(src)) writeComParams(src);
+						if (!Main.isInvalidCharaCostume(src)) writeComParams(src);
 					}
 				}
 				else if (fileName.endsWith("com_param.cmr")) 
